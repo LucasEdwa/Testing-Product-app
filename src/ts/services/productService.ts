@@ -10,7 +10,6 @@ export const getProducts = async (searchText: string) => {
     if (response.status === 200) {
       return response.data;
     }
-
     return [];
   } catch (err) {
     throw err;
