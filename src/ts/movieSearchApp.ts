@@ -1,4 +1,3 @@
-
 import { productSort } from "./functions";
 import { IProduct } from "./models/IProduct";
 import { getProducts } from "./services/productService";
@@ -19,19 +18,24 @@ export const init = () => {
 
   let ascending = true; // Initial sorting order
 
-  sortButton.addEventListener('click', () => {
+  sortButton.addEventListener("click", () => {
     ascending = !ascending; // Toggle the sorting order
     products = productSort(products, ascending);
-    let container: HTMLDivElement = document.getElementById("searchresult") as HTMLDivElement;
+    let container: HTMLDivElement = document.getElementById(
+      "searchresult"
+    ) as HTMLDivElement;
     container.innerHTML = "";
     createHtml(products, container);
   });
 };
 
 const handleSearch = async () => {
-  let searchText = (document.getElementById("searchText") as HTMLInputElement).value;
+  let searchText = (document.getElementById("searchText") as HTMLInputElement)
+    .value;
 
-  let container: HTMLDivElement = document.getElementById("searchresult") as HTMLDivElement;
+  let container: HTMLDivElement = document.getElementById(
+    "searchresult"
+  ) as HTMLDivElement;
 
   container.innerHTML = "";
 
@@ -39,7 +43,9 @@ const handleSearch = async () => {
     products = await getProducts(searchText);
 
     if (products.length > 0) {
-      (document.getElementById("sort") as HTMLButtonElement).classList.toggle("invisible");
+      (document.getElementById("sort") as HTMLButtonElement).classList.toggle(
+        "invisible"
+      );
       console.log(products);
 
       createHtml(products, container);
